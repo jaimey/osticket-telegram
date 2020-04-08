@@ -10,7 +10,7 @@ osTicket-telegram_fork
 
 Install
 --------
-Скачайте этот репозиторий на сервер с остикетом, киньте папку telegram-bot в includes/plugins, тогда он появится в списке доступных плагинов. Его надо установить, из вебморды остикета, настроить (токен дота, ид чата, и айпи прокси (apt-get install tor && systemctl start tor && systemctl enable tor, и тогда этот параметр надо выставить в 127.0.0.1:9050)).
+Скачайте этот репозиторий на сервер с остикетом, киньте папку telegram-bot в includes/plugins, тогда он появится в списке доступных плагинов. Его надо установить, из вебморды остикета, настроить (токен бота, ид чата, и айпи прокси (apt-get install tor && systemctl start tor && systemctl enable tor, и тогда этот параметр надо выставить в 127.0.0.1:9050)).
 For more information about Telegram Bot, see: https://core.telegram.org/bots/api
 
 Info
