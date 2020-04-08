@@ -1,6 +1,9 @@
 osTicket-telegram
 ==============
 An plugin for [osTicket](https://osticket.com) which posts notifications to a [Telegram](https://telegram.org) channel/chat/group.
+Мне понадобилась оповещалка для телеги, и я форкнул этот плагин. 
+Дописал чуть более продвинутый дебаг, и возможность гнать трафик через SOCKS5 proxy.
+
 
 ## Note
 This project is no longer maintained.
