@@ -1,4 +1,4 @@
-osTicket-telegram
+osTicket-telegram_fork
 ==============
 An plugin for [osTicket](https://osticket.com) which posts notifications to a [Telegram](https://telegram.org) channel/chat/group.
 Мне понадобилась оповещалка для телеги, и я форкнул этот плагин. 
