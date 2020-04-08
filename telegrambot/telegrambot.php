@@ -19,6 +19,7 @@ class TelegramPlugin extends Plugin {
         $title = $ticket->getSubject() ?: 'No subject';
 		$createdBy = $ticket->getName()." (".$ticket->getEmail().")";
 		$chatid = $this->getConfig()->get('telegram-chat-id');
+		$chatid = '-'.$chatid;
         if ($this->getConfig()->get('telegram-include-body')) {
             $body = $ticket->getLastMessage()->getMessage() ?: 'No content';
 			$body = str_replace('<p>', '', $body);
@@ -46,10 +47,13 @@ class TelegramPlugin extends Plugin {
             global $ost;
 
             $data_string = utf8_encode(json_encode($payload));
-            $url = $this->getConfig()->get('telegram-webhook-url');
+	    $tor_proxy = $this->getConfig()->get('telegram-tor-proxy');
+	    $tor_proxy = 'socks5://'.$tor_proxy.'"';
+	    $token =  $this->getConfig()->get('telegram-token');
 
-            $ch = curl_init($url);
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+            $ch = curl_init();
+	    curl_setopt( $ch, CURLOPT_URL, 'https://api.telegram.org/bot' . $token . '/sendMessage' );
+            curl_setopt($ch, CURLOPT_POST,true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_HTTPHEADER, array(
@@ -57,18 +61,13 @@ class TelegramPlugin extends Plugin {
                     'Content-Length: ' . strlen($data_string)
                 )
             );
-
-            if (curl_exec($ch) === false) {
-                throw new Exception($url . ' - ' . curl_error($ch));
-            } else {
-                $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-                if ($statusCode != '200') {
-                    throw new Exception($url . ' Http code: ' . $statusCode);
-                }
-            }
-
+	    curl_setopt($ch,CURLOPT_PROXYTYPE,CURLPROXY_SOCKS5);
+	    curl_setopt($ch,CURLOPT_PROXY,$tor_proxy);
+	    $result=curl_exec($ch);
             curl_close($ch);
+	    if ($this->getConfig()->get('debug')) {
+		    error_log ($result);
+	    }
         } catch(Exception $e) {
             error_log('Error posting to Telegram. '. $e->getMessage());
         }
@@ -83,3 +82,4 @@ class TelegramPlugin extends Plugin {
         return $text;
     }
 }
+?>
