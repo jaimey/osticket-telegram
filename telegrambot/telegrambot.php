@@ -16,10 +16,19 @@ class TelegramPlugin extends Plugin {
 		global $ost;
 		$ticketLink = $ost->getConfig()->getUrl().'scp/tickets.php?id='.$ticket->getId();
 		$ticketId = $ticket->getNumber();
-        $title = $ticket->getSubject() ?: 'No subject';
+       		$title = $ticket->getSubject() ?: 'No subject';
 		$createdBy = $ticket->getName()." (".$ticket->getEmail().")";
-		$chatid = $this->getConfig()->get('telegram-chat-id');
+		$dept = $ticket->getDept();
+		$chats = explode(PHP_EOL,$this->getConfig()->get('chats'));
+		foreach($chats as $k) {
+		    $temp = explode(':',$k);
+		    if (strcasecmp($temp[0],$dept)==0) {
+                     $chatid = $temp[1];
+		     break;
+                    }.
+		}
 		$chatid = '-'.$chatid;
+
         if ($this->getConfig()->get('telegram-include-body')) {
             $body = $ticket->getLastMessage()->getMessage() ?: 'No content';
 			$body = str_replace('<p>', '', $body);
