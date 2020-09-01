@@ -12,10 +12,14 @@ class TelegramPluginConfig extends PluginConfig {
                 'label' => 'Telegram Bot Token',
                 'configuration' => array('size'=>100, 'length'=>200),
             )),
-            'telegram-chat-id' => new TextboxField(array(
-                'label' => 'Chat ID',
-                'configuration' => array('size'=>100, 'length'=>200),
+             'chats' => new TextareaField(array(
+                'id' => 'chats',
+                'label' => 'Chats and depts',
+                'configuration' => array('html'=>false, 'rows'=>2, 'cols'=>40),
+                'hint' => 'Use  "dept:chat_id". Place one '
+                    .'entry per line',
             )),
+
             'telegram-tor-proxy' => new TextboxField(array(
                 'label' => 'Tor proxy',
                 'configuration' => array('size'=>100, 'length'=>200),
