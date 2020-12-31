@@ -25,7 +25,7 @@ class TelegramPlugin extends Plugin {
 		    if (strcasecmp($temp[0],$dept)==0) {
                      $chatid = $temp[1];
 		     break;
-                    }.
+                    }
 		}
 		$chatid = '-'.$chatid;
 
