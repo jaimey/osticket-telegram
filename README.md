@@ -7,14 +7,15 @@ An plugin for [osTicket](https://osticket.com) which posts notifications to a [T
 
 Install
 --------
-Clone this repo or download the zip file and place the contents into your `include/plugins` folder.
-
-Insert Telegrams Bot URL for your bot (ex. `https://api.telegram.org/bot<token>/`) and Chat ID.
-
-For more information about Telegram Bot, see: https://core.telegram.org/bots/api
+1. Clone this repo or download the zip file and place the contents into your `include/plugins` folder.
+2. Set permissions 755 to the folder and 640 to the files
+3. Enable plugin
+4. Add new Instance
+5. Set name and status enable
+6. Set Configuration: telegram bot token and chat id
 
 Info
 ------
-This plugin uses CURL and tested on osTicket v1.15.1
+This plugin uses CURL and tested on sTicket (v1.17.4)
 
-Based on [thammanna/osticket-slack](https://github.com/thammanna/osticket-slack)
+Based on [clonemeagain/osticket-slack](https://github.com/clonemeagain/osticket-slack/)
